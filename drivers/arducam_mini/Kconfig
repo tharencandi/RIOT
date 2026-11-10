@@ -1,0 +1,29 @@
+# SPDX-FileCopyrightText: 2026 Tharen Emmanuel Candi <candi.tharen@gmail.com>
+# SPDX-License-Identifier: LGPL-2.1-only
+
+config MODULE_ARDUCAM_MINI
+    bool "ArduCAM Mini 2MP Plus camera"
+    depends on TEST_KCONFIG
+    depends on HAS_PERIPH_I2C
+    depends on HAS_PERIPH_SPI
+    select MODULE_PERIPH_I2C
+    select MODULE_PERIPH_SPI
+
+menu "ArduCAM Mini driver"
+    depends on USEMODULE_ARDUCAM_MINI
+
+config ARDUCAM_MINI_PROBE_RETRIES
+    int "Sensor probe attempts at init"
+    default 3
+    help
+        How many times arducam_mini_init() tries to find the OV2640 on I2C
+        before it returns an error. The driver waits only after a failed try.
+
+config ARDUCAM_MINI_POLL_MS
+    int "Poll interval in milliseconds"
+    default 1
+    help
+        Time the calling thread sleeps between two checks of the capture done
+        flag in arducam_mini_capture_wait(). Other threads run in this time.
+
+endmenu # ArduCAM Mini driver

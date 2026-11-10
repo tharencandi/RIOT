@@ -20,6 +20,10 @@ menu "Miscellaneous Device Drivers"
 rsource "at/Kconfig"
 endmenu # Miscellaneous Device Drivers
 
+menu "Multimedia Device Drivers"
+rsource "arducam_mini/Kconfig"
+endmenu # Multimedia Device Drivers
+
 rsource "Kconfig.net"
 
 menu "Peripherals drivers"
